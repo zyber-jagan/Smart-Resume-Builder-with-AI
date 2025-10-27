@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // This will work for GitHub Pages
+  base: '/Smart-Resume-Builder-with-AI/', // Updated for your GitHub repository name
   server: {
     port: 3000,
     proxy: {
