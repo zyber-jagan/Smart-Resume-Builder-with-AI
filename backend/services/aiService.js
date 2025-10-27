@@ -1,13 +1,14 @@
 const OpenAI = require('openai');
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+// Initialize OpenAI with conditional API key
+const openai = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here' 
+  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  : null;
 
 async function getAISuggestions(resumeData) {
   try {
-    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_openai_api_key_here') {
-      throw new Error('OpenAI API key not configured. Please add it to .env file.');
+    if (!openai) {
+      throw new Error('OpenAI API key not configured. Please add it to .env file or environment variables.');
     }
 
     // Prepare prompt for AI suggestions
