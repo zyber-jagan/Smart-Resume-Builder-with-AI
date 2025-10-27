@@ -6,6 +6,8 @@ yarn.lock
 # Environment variables
 .env
 .env.local
+.env.production
+.env.development
 
 # Build outputs
 dist/
@@ -24,4 +26,14 @@ Thumbs.db
 
 # MongoDB
 data/
+
+# Verctl
+.vercel
+
+# Netlify
+.netlify
+
+# Temporary files
+*.tmp
+.cache
 

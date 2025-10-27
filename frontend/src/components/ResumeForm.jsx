@@ -8,7 +8,8 @@ function ResumeForm({ resumeData, handleInputChange, handleArrayChange, addItem,
     setLoading(true);
     setSaveMessage('');
     try {
-      const response = await axios.post('http://localhost:5000/api/resume', resumeData);
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await axios.post(`${apiUrl}/api/resume`, resumeData);
       setResumeData(response.data);
       setSaveMessage('✓ Resume saved successfully!');
       setTimeout(() => setSaveMessage(''), 3000);

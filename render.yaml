@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: resume-builder-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: resume-builder-db
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
+
+  - type: web
+    name: resume-builder-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+
